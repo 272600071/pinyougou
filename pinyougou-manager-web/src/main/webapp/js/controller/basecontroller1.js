@@ -1,10 +1,8 @@
 app.controller('baseController',function ($scope) {
     $scope.reloadList=function(){
         //切换页码
-        //$scope.findPage( $scope.paginationConf.currentPage, $scope.paginationConf.itemsPerPage);
         $scope.search( $scope.paginationConf.currentPage, $scope.paginationConf.itemsPerPage);
-        //brandService.search($scope.paginationConf.currentPage, $scope.paginationConf.itemsPerPage);
-    }
+    };
     $scope.paginationConf = {
         currentPage: 1,//当前的页码
         totalItems: 10,//总记录数
@@ -17,10 +15,11 @@ app.controller('baseController',function ($scope) {
         }
     };
     $scope.selectIds=[];//选中的ID集合
-    $scope.updateSelection=function ($event,id) {
-        if ($event.target.checked){
-            $scope.selectIds.push( id);
-        }else{
+
+    $scope.updateSelection = function ($event, id) {
+        if ($event.target.checked) {//如果是被选中,则增加到数组
+            $scope.selectIds.push(id);
+        } else {
             var idx = $scope.selectIds.indexOf(id);
             $scope.selectIds.splice(idx, 1);//删除
         }

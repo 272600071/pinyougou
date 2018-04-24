@@ -1,4 +1,5 @@
-app.controller('brandController',function ($scope,brandService) {
+app.controller('brandController',function ($scope,$controller,brandService) {
+    $controller('baseController',{$scope:$scope})
     $scope.findAll=function () {
         brandService.findAll().success(
             function (response) {
@@ -14,12 +15,7 @@ app.controller('brandController',function ($scope,brandService) {
             }
         );
     }
-    $scope.reloadList=function(){
-        //切换页码
-        //$scope.findPage( $scope.paginationConf.currentPage, $scope.paginationConf.itemsPerPage);
-        $scope.search( $scope.paginationConf.currentPage, $scope.paginationConf.itemsPerPage);
-        //brandService.search($scope.paginationConf.currentPage, $scope.paginationConf.itemsPerPage);
-    }
+
     //添加品牌
     $scope.add=function () {
         //var methodName='add';

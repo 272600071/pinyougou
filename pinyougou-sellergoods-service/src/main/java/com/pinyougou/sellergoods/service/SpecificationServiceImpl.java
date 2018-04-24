@@ -62,6 +62,7 @@ public class SpecificationServiceImpl implements SpecificationService {
 		List<TbSpecificationOption> specificationOptionList = specification.getSpecificationOptionList();
 		for (TbSpecificationOption option : specificationOptionList) {
 			option.setSpecId(tbSpecification.getId());//设置规格的ID
+			System.out.println(tbSpecification.getId()+"++++++++++++++++++++++++++++++++++++++++++++++");
 			optionMapper.insert(option);
 		}
 	}

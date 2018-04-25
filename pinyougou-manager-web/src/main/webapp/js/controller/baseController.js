@@ -25,4 +25,25 @@ app.controller('baseController',function ($scope) {
             $scope.selectIds.splice(idx, 1);//删除
         }
     }
+    /**
+         *
+         * @param jsonString 被传递过来的JSON字符串  [{"id":1,"text":"联想"},{"id":3,"text":"三星"},{"id":7,"text":"中兴"}]
+         * @param key 要提取的某一个key的值对应的KEY ---》  text
+         */
+        //var o = {key:1}
+        // o.key=1
+        //o['key']=1
+        $scope.jsonToString=function(jsonString,key){
+            var fromJson = angular.fromJson(jsonString);
+            var str="";
+            for (var i=0;i<fromJson.length;i++){
+                str+= fromJson[i][key]+","
+            }
+
+            if(str.length>=1){
+                str= str.substring(0,str.length-1);
+            }
+            return str;
+
+        }
 })

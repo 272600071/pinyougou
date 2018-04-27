@@ -1,6 +1,8 @@
 package com.pinyougou.shop.controller;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -46,9 +48,12 @@ public class SellerController {
 	 * @param seller
 	 * @return
 	 */
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 	@RequestMapping("/add")
 	public Result add(@RequestBody TbSeller seller){
 		try {
+			seller.setPassword(passwordEncoder.encode(seller.getPassword()));
 			sellerService.add(seller);
 			return new Result(true, "增加成功");
 		} catch (Exception e) {

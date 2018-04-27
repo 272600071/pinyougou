@@ -1,6 +1,8 @@
 package com.pinyougou.shop.controller;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -46,6 +48,7 @@ public class GoodsController {
 	 * @param goods
 	 * @return
 	 */
+
 	@RequestMapping("/add")
 	public Result add(@RequestBody TbGoods goods){
 		try {
@@ -101,7 +104,7 @@ public class GoodsController {
 	
 		/**
 	 * 查询+分页
-	 * @param brand
+	 * @param
 	 * @param page
 	 * @param rows
 	 * @return

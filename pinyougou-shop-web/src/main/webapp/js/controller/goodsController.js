@@ -1,5 +1,5 @@
  //控制层 
-app.controller('goodsController' ,function($scope,$controller   ,goodsService){	
+app.controller('goodsController' ,function($scope,$controller,itemCatService,uploadService,goodsService){
 	
 	$controller('baseController',{$scope:$scope});//继承
 	
@@ -75,5 +75,52 @@ app.controller('goodsController' ,function($scope,$controller   ,goodsService){
 			}			
 		);
 	}
-    
+	$scope.add=function () {
+        $scope.entity.goodsDesc.introduction=editor.html();
+		goodsService.add($scope.entity).success(
+			function (response) {
+				if (response.success){
+                    editor.html('');
+                    $scope.entity={};
+                    alert('保存成功');
+				}else {
+                    alert(response.message);
+				}
+            }
+		)
+    }
+    //上传图片
+
+    $scope.uploadFile=function () {
+        uploadService.uploadFile().success(
+            function (response) {//result :包含里面的图片的URL
+                if(response.success){
+                    $scope.image_entity.url=response.message;
+                }else{
+                    alert("失败");
+                }
+
+            }
+        )
+    }
+
+    $scope.entity={goods:{},goodsDesc:{itemImages:[]},itemList:[]};
+    /**
+     * 将图片对象添加到数组中
+     */
+    $scope.add_image_entity=function () {
+        $scope.entity.goodsDesc.itemImages.push($scope.image_entity);
+    }
+    $scope.remove_image_entity=function(index){
+        $scope.entity.goodsDesc.itemImages.splice(index,1);
+    }
+
+    //读取一级分类
+	$scope.selectItemCat1List=function () {
+		itemCatService.findByParentId(0).success(
+			function (response) {
+			$scope.itemCat1List=response;
+        })
+    }
+
 });	

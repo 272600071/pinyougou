@@ -60,7 +60,7 @@ app.controller('goodsController' ,function($scope,$controller,itemCatService,typ
 				if(response.success){
 					$scope.reloadList();//刷新列表
 				}						
-			}		
+			}
 		);				
 	}
 	
@@ -200,5 +200,6 @@ app.controller('goodsController' ,function($scope,$controller,itemCatService,typ
         }
         return newList;
     }
+    $scope.status=['未审核','已审核','审核未通过','关闭']
 
     });

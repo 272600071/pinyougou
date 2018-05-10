@@ -120,6 +120,12 @@
             <version>${servlet-api.version}</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>org.apache.solr</groupId>
+            <artifactId>solr-solrj</artifactId>
+            <version>4.10.4</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>
